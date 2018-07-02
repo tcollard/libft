@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocohen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tcollard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 19:53:28 by jocohen           #+#    #+#             */
 /*   Updated: 2018/04/26 18:48:24 by tcollard         ###   ########.fr       */
