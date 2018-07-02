@@ -1,3 +1,1 @@
-[submodule "srcs/ft_printf"]
-	path = srcs/ft_printf
-	url = https://github.com/tcollard/ft_printf.git
+
