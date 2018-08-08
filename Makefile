@@ -60,6 +60,7 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_STR)ft_isascii.c \
       $(PATH_STR)ft_isdigit.c \
       $(PATH_STR)ft_isprint.c \
+	  $(PATH_STR)ft_isspace.c \
       $(PATH_STR)ft_itoa.c \
       $(PATH_STR)ft_strcat.c \
       $(PATH_STR)ft_strchr.c \
@@ -144,7 +145,7 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c
 	@mkdir $(PATH_OBJ)$(PATH_PUT) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
-	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $< 
+	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $<
 	@echo "LIBFT: GCC SRC>OBJ DONE"
 
 clean :
