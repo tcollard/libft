@@ -142,9 +142,13 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c
 	@mkdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
 	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $<
+<<<<<<< HEAD
 	@echo " "
 	@printf "\033[1A"
 	@./progress_bar.sh $(NAME)
+=======
+	@echo "LIBFT: GCC SRC>OBJ DONE"
+>>>>>>> 0ba56c314469c0af89786a7051d470155774bed6
 
 clean :
 	@/bin/rm -f $(OBJS)
