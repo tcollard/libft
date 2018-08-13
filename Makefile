@@ -12,6 +12,9 @@
 
 NAME = libft.a
 
+END = \x1b[0m
+GREEN = \x1b[32m
+
 PATH_PRINTF = ft_printf/
 PATH_LST = lst/
 PATH_MATH = math/
@@ -60,6 +63,7 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_STR)ft_isascii.c \
       $(PATH_STR)ft_isdigit.c \
       $(PATH_STR)ft_isprint.c \
+	  $(PATH_STR)ft_isspace.c \
       $(PATH_STR)ft_itoa.c \
       $(PATH_STR)ft_strcat.c \
       $(PATH_STR)ft_strchr.c \
@@ -120,21 +124,14 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-#SRC := $(filter $(addprefix %, .c), $(SRC))
 SRCS = $(addprefix $(PATH_SRC),$(SRC))
 OBJS = $(addprefix $(PATH_OBJ), $(OBJ))
-#OBJS = $(addprefix $(PATH_OBJ), $(addsuffix .o, $(basename $(SRC))))
-#OBJS_DIR = $(sort $(dir $(OBJS)))
-
-#INCS_DIR = $(addsuffix /, $(PATH_INCS))
-#INCS = $(addprefix -I, $(INCS_DIR))
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "LIBFT DONE"
 
 $(PATH_OBJ)%.o : $(PATH_SRC)%.c
 	@mkdir $(PATH_OBJ) 2> /dev/null || true
@@ -144,8 +141,10 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c
 	@mkdir $(PATH_OBJ)$(PATH_PUT) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
-	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $< 
-	@echo "LIBFT: GCC SRC>OBJ DONE"
+	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $<
+	@echo " "
+	@printf "\033[1A"
+	@./progress_bar.sh $(NAME)
 
 clean :
 	@/bin/rm -f $(OBJS)
@@ -159,5 +158,7 @@ clean :
 
 fclean : clean
 	@/bin/rm -f $(NAME)
+	@echo "$(NAME):\t\t$(GREEN)[CLEAN]$(END)"
+
 
 re : fclean all
