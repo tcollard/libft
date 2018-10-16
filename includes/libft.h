@@ -95,6 +95,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lst_push_back(t_list *alst, t_list *lst_end);
 void				ft_lst_rev(t_list **alst);
-char				*ft_strwhcpy(char *dst, char const *src, unsigned int start, unsigned int end);
+char				*ft_strwhcpy(char *dst, char const *src, unsigned int start,
+					unsigned int end);
 
 #endif

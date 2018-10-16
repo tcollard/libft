@@ -6,7 +6,7 @@
 #    By: tcollard <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 14:51:47 by tcollard          #+#    #+#              #
-#    Updated: 2018/05/02 11:11:19 by tcollard         ###   ########.fr        #
+#    Updated: 2018/09/18 15:43:10 by tcollard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,13 +142,9 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c
 	@mkdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
 	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $<
-<<<<<<< HEAD
 	@echo " "
 	@printf "\033[1A"
 	@./progress_bar.sh $(NAME)
-=======
-	@echo "LIBFT: GCC SRC>OBJ DONE"
->>>>>>> 0ba56c314469c0af89786a7051d470155774bed6
 
 clean :
 	@/bin/rm -f $(OBJS)

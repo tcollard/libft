@@ -50,7 +50,8 @@ static int			ft_position_word(char const *s, char c, unsigned int word_n)
 	return (i);
 }
 
-static int			ft_counter_lettre(char const *s, char c, unsigned int word_n)
+static int			ft_counter_lettre(char const *s, char c,
+					unsigned int word_n)
 {
 	int	pos_word;
 	int	nb_lettre;
@@ -65,7 +66,8 @@ static int			ft_counter_lettre(char const *s, char c, unsigned int word_n)
 	return (nb_lettre);
 }
 
-static void			ft_fill(char const *s, char c, unsigned int wrd_n, char **split)
+static void			ft_fill(char const *s, char c, unsigned int wrd_n,
+					char **split)
 {
 	int	i;
 	int	j;
