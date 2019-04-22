@@ -6,7 +6,7 @@
 #    By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 14:51:47 by tcollard          #+#    #+#              #
-#    Updated: 2018/11/21 10:57:04 by tcollard         ###   ########.fr        #
+#    Updated: 2019/03/02 15:36:26 by jocohen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ PATH_MATH = math/
 PATH_MEM = mem/
 PATH_PUT = put/
 PATH_STR = str/
+PATH_OTHER = others/
 
 PATH_SRC = ./srcs/
 INCS_LIB = ./includes/libft.h
@@ -29,6 +30,9 @@ PATH_OBJ = ./obj/
 
 SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_LST)ft_lstdelone.c \
+      $(PATH_LST)ft_ldbl_funcs.c \
+      $(PATH_LST)ft_lstfind.c \
+      $(PATH_LST)ft_lstsize.c \
       $(PATH_LST)ft_lstdel.c \
       $(PATH_LST)ft_lstadd.c \
       $(PATH_LST)ft_lstiter.c \
@@ -39,12 +43,15 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_MATH)ft_count_digit.c \
       $(PATH_MATH)ft_recursive_factorial.c \
       $(PATH_MATH)ft_itoa_base.c \
+      $(PATH_MATH)ft_lenbyte.c \
       $(PATH_MEM)ft_memalloc.c \
       $(PATH_MEM)ft_memccpy.c \
       $(PATH_MEM)ft_memchr.c \
       $(PATH_MEM)ft_memcmp.c \
       $(PATH_MEM)ft_memcpy.c \
       $(PATH_MEM)ft_memdel.c \
+      $(PATH_MEM)ft_memdel2.c \
+      $(PATH_MEM)ft_memdel_0.c \
       $(PATH_MEM)ft_memmove.c \
       $(PATH_MEM)ft_memset.c \
       $(PATH_PUT)ft_putchar.c \
@@ -55,6 +62,7 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_PUT)ft_putnbr_fd.c \
       $(PATH_PUT)ft_putstr.c \
       $(PATH_PUT)ft_putstr_fd.c \
+      $(PATH_PUT)ft_putwstr.c \
       $(PATH_PUT)get_next_line.c \
       $(PATH_STR)ft_atoi.c \
       $(PATH_STR)ft_bzero.c \
@@ -66,6 +74,7 @@ SRC = $(PATH_LST)ft_lstnew.c \
 	  $(PATH_STR)ft_isspace.c \
       $(PATH_STR)ft_itoa.c \
       $(PATH_STR)ft_strcat.c \
+      $(PATH_STR)ft_strcatc.c \
       $(PATH_STR)ft_strchr.c \
       $(PATH_STR)ft_strclr.c \
       $(PATH_STR)ft_strcmp.c \
@@ -96,6 +105,10 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_STR)ft_tolower.c \
       $(PATH_STR)ft_toupper.c \
       $(PATH_STR)ft_strwhcpy.c \
+      $(PATH_STR)ft_strwhlen.c \
+      $(PATH_STR)ft_twod_dup.c \
+      $(PATH_STR)ft_unicode.c \
+      $(PATH_STR)ft_wstrlen.c \
       $(PATH_PRINTF)apply_flag_hashtag.c \
       $(PATH_PRINTF)apply_flag_minus.c \
       $(PATH_PRINTF)apply_flag_plus.c \
@@ -116,7 +129,8 @@ SRC = $(PATH_LST)ft_lstnew.c \
       $(PATH_PRINTF)mask_wchar.c \
       $(PATH_PRINTF)modifier.c \
       $(PATH_PRINTF)precision.c \
-      $(PATH_PRINTF)struct.c
+      $(PATH_PRINTF)struct.c \
+	  $(PATH_OTHER)ft_path.c
 
 .PHONY: all clean fclean re build
 
@@ -133,15 +147,16 @@ $(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-$(PATH_OBJ)%.o : $(PATH_SRC)%.c
+$(PATH_OBJ)%.o : $(PATH_SRC)%.c $(INCS_LIB) $(INCS_PRINT) Makefile
 	@mkdir $(PATH_OBJ) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_LST) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_MATH) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_MEM) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PUT) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
+	@mkdir $(PATH_OBJ)$(PATH_OTHER) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
-	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -c -o $@ $<
+	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -o $@ -c $<
 	@echo " "
 	@printf "\033[1A"
 	@./progress_bar.sh $(NAME)
@@ -153,6 +168,8 @@ clean :
 	@rmdir $(PATH_OBJ)$(PATH_MEM) 2> /dev/null || true
 	@rmdir $(PATH_OBJ)$(PATH_PUT) 2> /dev/null || true
 	@rmdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
+	@rmdir $(PATH_OBJ)$(PATH_STR) 2> /dev/null || true
+	@rmdir $(PATH_OBJ)$(PATH_OTHER) 2> /dev/null || true
 	@rmdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
 	@rmdir $(PATH_OBJ) 2> /dev/null || true
 

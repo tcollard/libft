@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:46:17 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/18 14:33:44 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/21 16:30:35 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strnew(size_t size)
 	while (i < size)
 	{
 		str[i] = '\0';
-		i++;
+		i += 1;
 	}
 	str[i] = '\0';
 	return (str);

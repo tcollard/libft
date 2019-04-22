@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 16:39:38 by tcollard          #+#    #+#             */
-/*   Updated: 2018/03/15 17:22:42 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:42:21 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,47 +24,48 @@ int			conv_s(va_list *ap, char **var)
 	return (0);
 }
 
-static void	conv_c_width(char **var, t_flag *tab)
+static void	conv_c_width(char **var, t_flag *tab_p)
 {
 	char	*add;
 	char	z;
 
 	z = ' ';
-	(tab->flag[1] == 1) ? z = '0' : z;
-	add = ft_memset(ft_memalloc(tab->width), z, tab->width - 1);
-	if (tab->flag[2] == 1)
+	(tab_p->flag[1] == 1) ? z = '0' : z;
+	add = ft_memset(ft_memalloc(tab_p->width), z, tab_p->width - 1);
+	if (tab_p->flag[2] == 1)
 	{
-		ft_display(tab);
-		reinit_tab(tab);
+		ft_display(tab_p);
+		reinit_tab(tab_p);
 		write(1, var[0], 1);
-		add_var(tab, add);
+		add_var(tab_p, add);
 	}
-	else if (tab->flag[2] == 0)
+	else if (tab_p->flag[2] == 0)
 	{
-		add_var(tab, add);
-		ft_display(tab);
-		reinit_tab(tab);
+		add_var(tab_p, add);
+		ft_display(tab_p);
+		reinit_tab(tab_p);
 		write(1, var[0], 1);
 	}
 	free(add);
 }
 
-int			conv_c(va_list *ap, char **var, t_flag *tab)
+int			conv_c(va_list *ap, char **var, t_flag *tab_p)
 {
 	char	z;
 
 	z = ' ';
-	*var = ft_memalloc(2);
+	if (!(*var = ft_memalloc(2)))
+		return (0);
 	**var = (int)va_arg(*ap, int);
 	if (**var == 0)
 	{
-		tab->ret += 1;
-		if (tab->width != 0)
-			conv_c_width(var, tab);
+		tab_p->ret += 1;
+		if (tab_p->width != 0)
+			conv_c_width(var, tab_p);
 		else
 		{
-			ft_display(tab);
-			reinit_tab(tab);
+			ft_display(tab_p);
+			reinit_tab(tab_p);
 			write(1, var[0], 1);
 		}
 		*var = ft_strdup("");

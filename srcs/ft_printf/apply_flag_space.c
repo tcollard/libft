@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   apply_flag_space.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:14:20 by tcollard          #+#    #+#             */
-/*   Updated: 2018/03/15 18:46:18 by tcollard         ###   ########.fr       */
+/*   Updated: 2018/10/18 17:59:10 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*space(char **var, char c, t_flag *tab)
+char		*space(char **var, char c, t_flag *tab_p)
 {
 	char	*modif;
 	char	*add;
@@ -21,11 +21,11 @@ char		*space(char **var, char c, t_flag *tab)
 	modif = NULL;
 	add = NULL;
 	len = (int)ft_strlen(*var);
-	if (tab->width > len)
+	if (tab_p->width > len)
 	{
-		if (!(add = ft_memalloc(tab->width - len + 1)))
+		if (!(add = ft_memalloc(tab_p->width - len + 1)))
 			return (NULL);
-		add = ft_memset(add, ' ', tab->width - len);
+		add = ft_memset(add, ' ', tab_p->width - len);
 		modif = ft_strjoin(add, *var);
 		free(add);
 	}

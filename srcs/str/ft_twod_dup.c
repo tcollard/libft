@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strwhcpy.c                                      :+:      :+:    :+:   */
+/*   ft_twod_dup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 15:46:27 by jocohen           #+#    #+#             */
-/*   Updated: 2018/01/14 17:45:14 by jocohen          ###   ########.fr       */
+/*   Created: 2018/04/18 17:07:51 by jocohen           #+#    #+#             */
+/*   Updated: 2018/04/18 17:07:54 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strwhcpy(char *dst, char const *src, unsigned int start,
-		unsigned int end)
+char	**ft_twod_dup(const char **t)
 {
-	unsigned int	x;
+	char	**output;
+	size_t	x;
+	size_t	y;
 
+	if (!t)
+		return (0);
+	y = 0;
 	x = 0;
-	while (src[start] && start < end + 1)
-	{
-		dst[x] = src[start];
+	while (t[x])
 		x += 1;
-		start += 1;
+	if (!(output = (char **)malloc(sizeof(char *) * (x + 1))))
+		return (0);
+	while (y != x)
+		output[y++] = 0;
+	y = 0;
+	while (t[y])
+	{
+		if (!(*(output + y) = ft_strdup(t[y])))
+			return (0);
+		y += 1;
 	}
-	dst[x] = 0;
-	return (dst);
+	return (output);
 }

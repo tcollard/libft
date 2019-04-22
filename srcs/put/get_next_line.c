@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 19:53:28 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:24 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/15 11:00:08 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		read_left(t_gnl *file, const int fd, char **line)
 		tsf.x += 1;
 	if (!((*line) = ft_memalloc(tsf.x + 1)))
 		return (-1);
-	ft_strwhcpy((*line), file->buf, 0, tsf.x - 1);
+	ft_memmove((*line), file->buf, tsf.x);
 	if (file->buf[tsf.x] == '\n')
 	{
 		file->rd -= (tsf.x + 1);

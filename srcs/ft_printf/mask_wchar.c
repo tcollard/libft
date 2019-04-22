@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mask_wchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 18:25:52 by tcollard          #+#    #+#             */
-/*   Updated: 2018/03/15 19:53:29 by tcollard         ###   ########.fr       */
+/*   Updated: 2018/10/18 18:04:37 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int		nb_octet_char(wchar_t wc, t_flag *tab)
+int		nb_octet_char(wchar_t wc, t_flag *tab_p)
 {
 	int	nb;
 
@@ -23,33 +23,33 @@ int		nb_octet_char(wchar_t wc, t_flag *tab)
 	(wc > 0xFFFF && wc <= 0x10FFFF) ? nb = 4 : 0;
 	if ((wc >= 0xD800 && wc <= 0xDFFF) || wc > 0x10FFFF || wc < 0)
 	{
-		tab->ret = -1;
+		tab_p->ret = -1;
 		nb = -1;
 	}
 	return (nb);
 }
 
-int		nb_octet_str(wchar_t *str, t_flag *tab)
+int		nb_octet_str(wchar_t *str, t_flag *tab_p)
 {
 	int	nb;
 	int byte;
 
 	nb = 0;
 	byte = 0;
-	while (*str && tab->ret != -1)
+	while (*str && tab_p->ret != -1)
 	{
-		byte = nb_octet_char(*str, tab);
+		byte = nb_octet_char(*str, tab_p);
 		(*str < 256) ? byte = 1 : 0;
 		if (byte > MB_CUR_MAX)
 		{
-			if (tab->precision == 0)
+			if (tab_p->precision == 0)
 				break ;
-			tab->ret = -1;
+			tab_p->ret = -1;
 			return (-1);
 		}
-		if (tab->precision != -1 && tab->precision - byte >= 0)
-			tab->precision -= byte;
-		else if (tab->precision != -1)
+		if (tab_p->precision != -1 && tab_p->precision - byte >= 0)
+			tab_p->precision -= byte;
+		else if (tab_p->precision != -1)
 			break ;
 		nb += byte;
 		str++;
@@ -78,7 +78,7 @@ void	init_mask(char ***oct, int nb_octet)
 	(nb_octet == 4) ? (*oct)[0][3] = '1' : 0;
 }
 
-void	apply_mask(char *str, int x, int nb_octet, t_flag *tab)
+void	apply_mask(char *str, int x, int nb_octet, t_flag *tab_p)
 {
 	char	**oct;
 	int		tmp_octet;
@@ -99,21 +99,21 @@ void	apply_mask(char *str, int x, int nb_octet, t_flag *tab)
 		while (i > nb_octet - 1 && x >= 0)
 			oct[0][i--] = str[x--];
 	}
-	print_wchar(&oct, nb_octet, tab);
+	print_wchar(&oct, nb_octet, tab_p);
 }
 
-void	print_wchar(char ***oct, int nb_octet, t_flag *tab)
+void	print_wchar(char ***oct, int nb_octet, t_flag *tab_p)
 {
 	int	i;
 	int	value;
 
 	i = 0;
-	ft_display(tab);
+	ft_display(tab_p);
 	value = ft_atoi_base((*oct)[i], 2);
 	if (nb_octet == 2 && (value == 192 || value == 193))
-		tab->ret += 1;
+		tab_p->ret += 1;
 	else
-		tab->ret += nb_octet;
+		tab_p->ret += nb_octet;
 	while (i < nb_octet)
 	{
 		value = ft_atoi_base((*oct)[i], 2);

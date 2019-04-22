@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_memdel_0.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 10:37:39 by tcollard          #+#    #+#             */
-/*   Updated: 2019/02/16 18:35:23 by jocohen          ###   ########.fr       */
+/*   Created: 2018/02/21 13:47:21 by jocohen           #+#    #+#             */
+/*   Updated: 2018/03/27 10:12:40 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strcat(char *dest, const char *src)
+void	ft_memdel0(char **ap)
 {
-	int	dest_len;
-	int	i;
-
-	if (!dest)
-		return ((char *)src);
-	if (!src)
-		return (dest);
-	dest_len = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[dest_len + i] = src[i];
-		i++;
-	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	if (!ap || !(*ap))
+		return ;
+	free(*ap);
+	*ap = 0;
 }

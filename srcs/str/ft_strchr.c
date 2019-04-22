@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:07 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/18 14:34:10 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/16 12:43:58 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strchr(const char *s, int c)
 	char	*occurence;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != '\0' && s[i] != (char)c)
 		i++;
 	if (s[i] == (char)c)

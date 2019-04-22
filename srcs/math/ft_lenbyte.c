@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_lenbyte.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 10:37:39 by tcollard          #+#    #+#             */
-/*   Updated: 2019/02/16 18:35:23 by jocohen          ###   ########.fr       */
+/*   Created: 2018/02/28 15:28:03 by jocohen           #+#    #+#             */
+/*   Updated: 2018/03/08 14:32:26 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strcat(char *dest, const char *src)
+size_t		ft_lenbyte(unsigned int c)
 {
-	int	dest_len;
-	int	i;
+	size_t			x;
+	unsigned int	y;
 
-	if (!dest)
-		return ((char *)src);
-	if (!src)
-		return (dest);
-	dest_len = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[dest_len + i] = src[i];
-		i++;
-	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	y = c;
+	x = 1;
+	while (y /= 2)
+		x += 1;
+	if (c <= 127 || (c <= 255 && MB_CUR_MAX == 1))
+		return (1);
+	else if (x > 7 && x <= 11)
+		return (2);
+	else if (x > 11 && x <= 16)
+		return (3);
+	else
+		return (4);
 }

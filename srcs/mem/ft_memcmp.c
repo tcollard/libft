@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 16:49:44 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/18 14:24:44 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:24:27 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (str1[i] != str2[i])
 			return (str1[i] - str2[i]);
-		i++;
+		i += 1;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_push_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:56:56 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/18 14:23:06 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:12:43 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lst_push_back(t_list *alst, t_list *lst_end)
 {
 	t_list	*tmp;
 
-	if (!alst)
+	if (!alst || !lst_end)
 		return ;
 	tmp = alst;
 	while (tmp->next)

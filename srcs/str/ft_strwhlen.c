@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strwhlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jocohen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 10:37:39 by tcollard          #+#    #+#             */
-/*   Updated: 2019/02/16 18:35:23 by jocohen          ###   ########.fr       */
+/*   Created: 2017/11/15 16:33:08 by jocohen           #+#    #+#             */
+/*   Updated: 2018/01/14 17:45:21 by jocohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-char	*ft_strcat(char *dest, const char *src)
+size_t	ft_strwhlen(const char *s, size_t start, size_t end)
 {
-	int	dest_len;
-	int	i;
+	size_t	x;
 
-	if (!dest)
-		return ((char *)src);
-	if (!src)
-		return (dest);
-	dest_len = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[dest_len + i] = src[i];
-		i++;
-	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	x = 0;
+	if (end == 0)
+		while (s[start])
+		{
+			start += 1;
+			x += 1;
+		}
+	else
+		while (s[start] && start < end)
+		{
+			start += 1;
+			x += 1;
+		}
+	return (x);
 }

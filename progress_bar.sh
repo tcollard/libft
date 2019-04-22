@@ -6,8 +6,8 @@ PURPLE='\033[0;35m'
 COLOR=0
 NAME=$1;
 x=0;
-MAX=`ls -lR ./srcs | grep -o -c "\.c"`
-COUNT=`ls -lR ./obj | grep -o -c "\.o" 2> /dev/null`
+MAX=`ls -lR ./srcs | grep -o -c "\.c"`;
+COUNT=`ls -lR ./obj | grep -o -c "\.o"`;
 i=0;
 
 if [ $MAX = 0 ]

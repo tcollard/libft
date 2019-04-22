@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   apply_flag_plus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:16:55 by tcollard          #+#    #+#             */
-/*   Updated: 2018/03/15 19:37:52 by tcollard         ###   ########.fr       */
+/*   Updated: 2018/10/18 17:58:24 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-char		*plus(char **v, char c, t_flag *tab)
+char		*plus(char **v, char c, t_flag *t)
 {
 	char	*modif;
 	char	*add;
@@ -21,16 +21,16 @@ char		*plus(char **v, char c, t_flag *tab)
 	len = (int)ft_strlen(*v);
 	if (**v == '-' || c == 'x' || c == 'X' || c == 'o' || c == 'O' || c == 'p')
 		return (*v);
-	if (tab->width > len && c != 'u' && tab->flag[2] == 0 && tab->flag[1] == 0)
+	if (t->width > len && c != 'u' && t->flag[2] == 0 && t->flag[1] == 0)
 	{
-		if (!(add = ft_memalloc(tab->width - len + 1)))
+		if (!(add = ft_memalloc(t->width - len + 1)))
 			return (NULL);
-		add = ft_memset(add, ' ', tab->width - len);
-		add[tab->width - len - 1] = '+';
+		add = ft_memset(add, ' ', t->width - len);
+		add[t->width - len - 1] = '+';
 	}
 	else if (c != 'u')
 	{
-		(tab->width <= len + 1) ? tab->flag[1] = 0 : 0;
+		(t->width <= len + 1) ? t->flag[1] = 0 : 0;
 		add = ft_strdup("+");
 	}
 	else

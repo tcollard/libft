@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcollard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tcollard <tcollard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 10:38:27 by tcollard          #+#    #+#             */
-/*   Updated: 2018/04/18 14:29:59 by tcollard         ###   ########.fr       */
+/*   Updated: 2019/02/21 11:38:37 by tcollard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_strclr(char *s)
 {
-	int	len_s;
+	unsigned int	i;
 
+	i = 0;
 	if (!s)
 		return ;
-	len_s = ft_strlen(s);
-	while (len_s >= 0)
+	while (s[i])
 	{
-		s[len_s] = '\0';
-		len_s--;
+		s[i] = '\0';
+		i += 1;
 	}
 }
