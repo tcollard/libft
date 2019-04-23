@@ -157,9 +157,9 @@ $(PATH_OBJ)%.o : $(PATH_SRC)%.c $(INCS_LIB) $(INCS_PRINT) Makefile
 	@mkdir $(PATH_OBJ)$(PATH_OTHER) 2> /dev/null || true
 	@mkdir $(PATH_OBJ)$(PATH_PRINTF) 2> /dev/null || true
 	@gcc $(CFLAGS) -I $(INCS_LIB) -I $(INCS_PRINT) -o $@ -c $<
-	@echo " "
-	@printf "\033[1A"
-	@./progress_bar.sh $(NAME)
+#	@echo " "
+#	@printf "\033[1A"
+#	@./progress_bar.sh $(NAME)
 
 clean :
 	@/bin/rm -f $(OBJS)
